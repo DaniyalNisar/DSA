@@ -71,6 +71,17 @@ public:
     }
     head = prev;
   }
+
+  void RecursiveReverse(Node* p){
+    if(p->next ==  NULL)
+    {
+      head = p ;
+      return;
+    }
+    RecursiveReverse(p->next);
+    p->next->next=p;
+    p->next = NULL;
+  }
   void recursivePrint(Node *p) {
 
     if (p == NULL) {
@@ -119,5 +130,11 @@ int main() {
   cout<<endl;
   cout<< "Print Reverse Recursively"<<endl;
   list1.recursiveReversePrint(list1.getHead());
+  cout<<endl;
+  cout<<"Reverse Recursively"<<endl;
+  list1.RecursiveReverse(list1.getHead());
+  list1.display();
+  cout<<endl;
+  
   return 0;
 }
