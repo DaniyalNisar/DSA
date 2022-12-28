@@ -10,6 +10,11 @@ class LinkedList {
   Node *head;
 
 public:
+
+  Node* getHead() {
+    return head;
+  }
+
   void insert(int data) {
     Node *newNode = new Node;
     newNode->data = data;
@@ -43,7 +48,7 @@ public:
       head = head->next;
       delete temp;
     } else {
-      for (int i = 1 ;i < position - 1; i++) {
+      for (int i = 1; i < position - 1; i++) {
         temp = temp->next;
         if (temp == NULL) {
           break;
@@ -55,19 +60,36 @@ public:
     }
   }
 
-void reverse() {
-  Node *temp = head;  
-  Node *prev = NULL;
-  while (temp!= NULL) {
-    Node *temp2 = temp->next;
-    temp->next = prev;
-    prev = temp;
-    temp = temp2;
+  void reverse() {
+    Node *temp = head;
+    Node *prev = NULL;
+    while (temp != NULL) {
+      Node *temp2 = temp->next;
+      temp->next = prev;
+      prev = temp;
+      temp = temp2;
+    }
+    head = prev;
   }
-  head = prev;
-  
-}
+  void recursivePrint(Node *p) {
 
+    if (p == NULL) {
+      return;
+    }
+    cout << p->data << " ";
+    recursivePrint(p->next);
+  }
+
+  void recursiveReversePrint(Node* p)
+  {
+    if(p == NULL)
+    {
+      return;
+    }
+
+    recursiveReversePrint(p->next);
+    cout<< p->data<<" ";
+  }
   void display() {
     Node *current = head;
     while (current != NULL) {
@@ -92,4 +114,10 @@ int main() {
   list1.display();
   list1.reverse();
   list1.display();
+  cout << "Print Recursively" << endl;
+  list1.recursivePrint(list1.getHead());
+  cout<<endl;
+  cout<< "Print Reverse Recursively"<<endl;
+  list1.recursiveReversePrint(list1.getHead());
+  return 0;
 }
