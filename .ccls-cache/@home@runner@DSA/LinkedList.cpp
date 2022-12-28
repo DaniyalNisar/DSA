@@ -56,7 +56,15 @@ public:
   }
 
 void reverse() {
-  Node *temp = head;
+  Node *temp = head;  
+  Node *prev = NULL;
+  while (temp!= NULL) {
+    Node *temp2 = temp->next;
+    temp->next = prev;
+    prev = temp;
+    temp = temp2;
+  }
+  head = prev;
   
 }
 
@@ -81,5 +89,7 @@ int main() {
   list1.insertAtN(5, 1);
   list1.display();
   list1.deleteAtN(2);
+  list1.display();
+  list1.reverse();
   list1.display();
 }
