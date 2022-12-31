@@ -1,4 +1,0 @@
-2 arrays A and B
-Find no. of comparisons for which
-A[i] +A[j]> B[i] + B[j]
-where i<j 
